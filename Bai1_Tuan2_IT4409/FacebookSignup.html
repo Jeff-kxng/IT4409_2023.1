@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Facebook SingUp</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .intro-text {
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .intro-text img {
+      max-width: 150px;
+      height: auto;
+    }
+
+    .Signup {
+      width: 500px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 5px;
+      padding: 20px;
+      box-shadow: 0px 5px 8px 3px #aaaa;
+      margin-top: 20px;
+    }
+
+    .top {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .top h1 {
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    .top p {
+      color: #606770;
+    }
+
+    hr {
+      opacity: 0.2;
+    }
+
+    .signup_body {
+      margin-bottom: 20px;
+    }
+
+    .name {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+
+    .bottom {
+      margin-bottom: 10px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 48%;
+      padding: 10px;
+      border: 1px solid #aaaa;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .birthday {
+      margin-bottom: 10px;
+    }
+
+    .date select {
+      width: 32%;
+      padding: 10px;
+      border: 1px solid #aaaa;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .gender p {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    .person {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .person div {
+      width: 30%;
+    }
+
+    .person label {
+      font-size: 16px;
+    }
+
+    .content p {
+      font-size: 12px;
+      color: #606770;
+      margin-bottom: 10px;
+    }
+
+    .blue {
+      color: blue;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    button {
+      width: 40%;
+      padding: 5px;
+      background: #0ebd02;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .center-vertically {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .center-text {
+      text-align: center;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+<div class="intro-text">
+  <img src="https://static.xx.fbcdn.net/rsrc.php/y8/r/dF5SId3UHWd.svg" alt="Logo">
+</div>
+<!-- for signup page-->
+<div class="Signup">
+  <div class="top">
+    <h1>Create a new account</h1>
+    <p>It's quick and easy</p>
+  </div>
+  <hr>
+  <div class="signup_body">
+    <div class="name">
+      <input type="text" placeholder="First Name">
+      <input type="text" placeholder="Surename">
+    </div>
+    <div class="bottom">
+      <input type="text" placeholder="Mobile number or email address" style="width: 100%;">
+    </div>
+    <div class="bottom">
+      <input type="password" placeholder="New password" style="width: 100%;">
+    </div>
+  </div>
+  <div class="birthday">
+    <p>Date of birth</p>
+    <div class="date">
+      <select name="month" id="monthSelect">
+        <option value="Jan">Jan</option>
+        <option value="Feb">Feb</option>
+        <option value="Mar">Mar</option>
+        <option value="Apr">Apr</option>
+        <option value="May">May</option>
+        <option value="Jun">Jun</option>
+        <option value="Jul">Jul</option>
+        <option value="Aug">Aug</option>
+        <option value="Sep">Sep</option>
+        <option value="Oct">Oct</option>
+        <option value="Nov">Nov</option>
+        <option value="Dec">Dec</option>
+      </select>
+      <select name="day" id="daySelect">
+      </select>
+      <select name="year" id="yearSelect">
+      </select>
+    </div>
+  </div>
+  <script>
+    // Get references to the select elements
+    var monthSelect = document.getElementById("monthSelect");
+    var daySelect = document.getElementById("daySelect");
+    var yearSelect = document.getElementById("yearSelect");
+
+    // Function to generate options for days 1 to 31
+    function generateDayOptions() {
+      // Clear existing options
+      daySelect.innerHTML = "";
+
+      // Get the selected month value
+      var selectedMonth = monthSelect.value;
+
+      // Determine the maximum number of days based on the selected month
+      var maxDays = 31; // Default to 31 days
+      if (selectedMonth === "Apr" || selectedMonth === "Jun" || selectedMonth === "Sep" || selectedMonth === "Nov") {
+        maxDays = 30; // April, June, September, November have 30 days
+      } else if (selectedMonth === "Feb") {
+        maxDays = 28; // February has 28 days (for simplicity, not considering leap years)
+      }
+
+      // Generate options for days
+      for (var i = 1; i <= maxDays; i++) {
+        var option = document.createElement("option");
+        option.value = i; // Set the value of the option to the day (1 to maxDays)
+        option.text = i;  // Set the text of the option to the day (1 to maxDays)
+        daySelect.appendChild(option);
+      }
+    }
+
+    // Function to generate options for years (e.g., from 1900 to 2023)
+    function generateYearOptions() {
+      // Clear existing options
+      yearSelect.innerHTML = "";
+      // Define the range of years you want to include
+      var startYear = 1900;
+      var endYear = 2023;
+
+      // Generate options for years
+      for (var year = startYear; year <= endYear; year++) {
+        var option = document.createElement("option");
+        option.value = year; // Set the value of the option to the year
+        option.text = year;  // Set the text of the option to the year
+        yearSelect.appendChild(option);
+      }
+    }
+
+    // Attach event listeners to the month select element
+    monthSelect.addEventListener("change", generateDayOptions);
+    monthSelect.addEventListener("change", generateYearOptions);
+    // Initial generation of day and year options based on the default selected month
+    generateDayOptions();
+    generateYearOptions();
+  </script>
+  <div class="gender">
+    <p>Gender</p>
+    <div class="person">
+      <div>
+        <label for="female">Female</label>
+        <input type="radio" id="female" name="gender">
+      </div>
+      <div>
+        <label for="male">Male</label>
+        <input type="radio" id="male" name="gender">
+      </div>
+      <div>
+        <label for="custom">Custom</label>
+        <input type="radio" id="custom" name="gender">
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <p>People who use our service may have uploaded your contact information to Facebook. <span class="blue">Learn more</span></p>
+    <p>By clicking Sign Up, you agree to our Terms, <span class="blue">Privacy Policy and Cookies Policy</span>. You may receive SMS notifications from us and can opt out anytime.</p>
+  </div>
+  <div class="center-vertically">
+    <button>Sign Up</button>
+    <div class="center-text">
+      <p style="color: blue;">Already have an account</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>
